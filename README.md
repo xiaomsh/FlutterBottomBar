@@ -8,7 +8,7 @@ and provide much attrs to config it which you want, the package is small and sim
 
 ### Demo
 
-[web Preview](https://wenchaosong.github.io/FlutterBottomBar/)
+[web Preview](https://xiaomsh.github.io/FlutterBottomBar/)
 
 ![gif show](/pic/demo.gif)
 
