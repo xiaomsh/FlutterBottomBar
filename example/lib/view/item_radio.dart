@@ -6,7 +6,8 @@ class ItemRadioWidget extends StatelessWidget {
   final String title;
   final List<RadioData> items;
 
-  ItemRadioWidget({
+  const ItemRadioWidget({
+    super.key,
     required this.title,
     required this.items,
   });
@@ -23,23 +24,23 @@ class ItemRadioWidget extends StatelessWidget {
       ),
     ));
     sub.add(Expanded(child: Container()));
-    items.forEach((element) {
+    for (var element in items) {
       sub.add(
         Radio(
-          value: "${element.value}",
-          groupValue: "${element.groupValue}",
+          value: element.value,
+          groupValue: element.groupValue,
           onChanged: (value) {
             element.onChanged(value!);
           },
         ),
       );
-      sub.add(Text("${element.title}"));
+      sub.add(Text(element.title));
       sub.add(Expanded(child: Container()));
-    });
+    }
     return Container(
       height: 45,
-      padding: EdgeInsets.only(left: 10, right: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(width: 1)),
       ),
       child: Row(children: sub),

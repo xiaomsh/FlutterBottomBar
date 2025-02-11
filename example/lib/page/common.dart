@@ -17,7 +17,7 @@ class _CommonPageState extends State<CommonPage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: Text('Common Bar'),
+        title: const Text('Common Bar'),
         backgroundColor: Colors.blue,
       ),
       body: Container(
@@ -31,8 +31,8 @@ class _CommonPageState extends State<CommonPage> {
         backgroundColor: Colors.white,
         elevation: 10,
         items: BarItem.commonItems,
-        selectedLabelStyle: TextStyle(fontSize: 12),
-        unselectedLabelStyle: TextStyle(fontSize: 12),
+        selectedLabelStyle: const TextStyle(fontSize: 12),
+        unselectedLabelStyle: const TextStyle(fontSize: 12),
         onTap: (index) {
           _currentIndex = index;
           setState(() {});

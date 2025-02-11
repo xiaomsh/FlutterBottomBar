@@ -5,7 +5,8 @@ class ItemColorWidget extends StatelessWidget {
   final Color color;
   final Function() onTap;
 
-  ItemColorWidget({
+  const ItemColorWidget({
+    super.key,
     required this.title,
     required this.color,
     required this.onTap,
@@ -15,8 +16,8 @@ class ItemColorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      padding: EdgeInsets.only(left: 10, right: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(width: 1)),
       ),
       child: Row(
@@ -36,7 +37,7 @@ class ItemColorWidget extends StatelessWidget {
               },
               child: Container(
                 color: color,
-                margin: EdgeInsets.only(left: 20, right: 20),
+                margin: const EdgeInsets.only(left: 20, right: 20),
               ),
             ),
           ),

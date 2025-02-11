@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,9 +11,9 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(left: 15, right: 15),
+            margin: const EdgeInsets.only(left: 15, right: 15),
             child: ElevatedButton(
-              child: Text("Common Bar"),
+              child: const Text("Common Bar"),
               onPressed: () {
                 Navigator.pushNamed(context, "/common");
               },
@@ -19,9 +21,9 @@ class HomePage extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(left: 15, top: 15, right: 15),
+            margin: const EdgeInsets.only(left: 15, top: 15, right: 15),
             child: ElevatedButton(
-              child: Text("Wave Bar"),
+              child: const Text("Wave Bar"),
               onPressed: () {
                 Navigator.pushNamed(context, "/wave");
               },
@@ -29,9 +31,9 @@ class HomePage extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(left: 15, top: 15, right: 15),
+            margin: const EdgeInsets.only(left: 15, top: 15, right: 15),
             child: ElevatedButton(
-              child: Text("Use"),
+              child: const Text("Use"),
               onPressed: () {
                 Navigator.pushNamed(context, "/use");
               },

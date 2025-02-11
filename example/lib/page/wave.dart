@@ -76,7 +76,7 @@ class _WavePageState extends State<WavePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: Text('Wave Bar'),
+        title: const Text('Wave Bar'),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
@@ -299,7 +299,7 @@ class _WavePageState extends State<WavePage> {
                 ),
               ],
             ),
-            SizedBox(height: 200),
+            const SizedBox(height: 200),
           ],
         ),
       ),
@@ -318,14 +318,16 @@ class _WavePageState extends State<WavePage> {
                 color: Colors.red,
               )
             : null,
-        direction: _direction == "up" ? WaveBottomBarDirection.up : WaveBottomBarDirection.down,
+        direction: _direction == "up"
+            ? WaveBottomBarDirection.up
+            : WaveBottomBarDirection.down,
         selectedLabelMargin: _selectLabelMargin,
         unselectedLabelMargin: _unselectLabelMargin,
         activeTopMargin: -_topMargin,
         duration: Duration(milliseconds: _duration),
         curve: _curve,
-        selectedLabelStyle: TextStyle(fontSize: 12, color: Colors.blue),
-        unselectedLabelStyle: TextStyle(fontSize: 12, color: Colors.grey),
+        selectedLabelStyle: const TextStyle(fontSize: 12, color: Colors.blue),
+        unselectedLabelStyle: const TextStyle(fontSize: 12, color: Colors.grey),
         showSelectedLabel: _showSelectedLabel == "true",
         showUnselectedLabel: _showUnselectedLabel == "true",
         onTap: (index) {

@@ -27,13 +27,13 @@ class _UsePageState extends State<UsePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade400,
       appBar: AppBar(
-        title: Text('Use'),
+        title: const Text('Use'),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             WaveBottomBar(
               items: BarItem.simpleUse,
               removeBottom: true,
@@ -41,7 +41,7 @@ class _UsePageState extends State<UsePage> {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             WaveBottomBar(
               items: BarItem.simpleUse,
               removeBottom: true,
@@ -52,14 +52,15 @@ class _UsePageState extends State<UsePage> {
                   height: 45,
                   color: Colors.red,
                   alignment: Alignment.center,
-                  child: Icon(Icons.refresh, size: 35, color: Colors.white),
+                  child:
+                      const Icon(Icons.refresh, size: 35, color: Colors.white),
                 ),
               ),
               onTap: (index) {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             WaveBottomBar(
               items: BarItem.fixed,
               removeBottom: true,
@@ -68,7 +69,7 @@ class _UsePageState extends State<UsePage> {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             WaveBottomBar(
               items: BarItem.fixed,
               removeBottom: true,
@@ -79,7 +80,7 @@ class _UsePageState extends State<UsePage> {
                   height: 45,
                   color: Colors.red,
                   alignment: Alignment.center,
-                  child: Icon(Icons.add, size: 35, color: Colors.white),
+                  child: const Icon(Icons.add, size: 35, color: Colors.white),
                 ),
               ),
               type: WaveBottomBarType.fixed,
@@ -87,7 +88,7 @@ class _UsePageState extends State<UsePage> {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             WaveBottomBar(
               amplitude: 42,
               waveLength: 120,
@@ -99,7 +100,7 @@ class _UsePageState extends State<UsePage> {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             WaveBottomBar(
               amplitude: 42,
               waveLength: 120,
@@ -112,14 +113,14 @@ class _UsePageState extends State<UsePage> {
                 debugPrint("$index");
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30),
+              margin: const EdgeInsets.only(left: 30, right: 30),
               child: WaveBottomBar(
                 width: MediaQuery.of(context).size.width - 60,
                 items: BarItem.simpleUse,
                 removeBottom: true,
-                corner: BorderRadius.only(
+                corner: const BorderRadius.only(
                   topLeft: Radius.circular(5),
                   topRight: Radius.circular(10),
                   bottomLeft: Radius.circular(15),
@@ -130,7 +131,7 @@ class _UsePageState extends State<UsePage> {
                 },
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
           ],
         ),
       ),

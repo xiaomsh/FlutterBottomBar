@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class BarItem {
   static final List<BottomNavigationBarItem> commonItems = [
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.home, size: 23, color: Colors.grey),
       activeIcon: Icon(Icons.home, size: 23, color: Colors.blue),
       label: "Home",
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.add, size: 23, color: Colors.grey),
       activeIcon: Icon(Icons.add, size: 23, color: Colors.blue),
       label: "Add",
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.person, size: 23, color: Colors.grey),
       activeIcon: Icon(Icons.person, size: 23, color: Colors.blue),
       label: "Me",
@@ -21,40 +21,40 @@ class BarItem {
 
   static final List<BottomNavigationBarItem> simpleUse = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.home, size: 23, color: Colors.grey),
+      icon: const Icon(Icons.home, size: 23, color: Colors.grey),
       activeIcon: ClipOval(
         child: Container(
           width: 45,
           height: 45,
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Icon(Icons.home, size: 35, color: Colors.white),
+          child: const Icon(Icons.home, size: 35, color: Colors.white),
         ),
       ),
       label: "Home",
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.add, size: 23, color: Colors.grey),
+      icon: const Icon(Icons.add, size: 23, color: Colors.grey),
       activeIcon: ClipOval(
         child: Container(
           width: 45,
           height: 45,
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Icon(Icons.add, size: 35, color: Colors.white),
+          child: const Icon(Icons.add, size: 35, color: Colors.white),
         ),
       ),
       label: "Add",
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.person, size: 23, color: Colors.grey),
+      icon: const Icon(Icons.person, size: 23, color: Colors.grey),
       activeIcon: ClipOval(
         child: Container(
           width: 45,
           height: 45,
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Icon(Icons.person, size: 35, color: Colors.white),
+          child: const Icon(Icons.person, size: 35, color: Colors.white),
         ),
       ),
       label: "Me",
@@ -62,7 +62,7 @@ class BarItem {
   ];
 
   static final List<BottomNavigationBarItem> fixed = [
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.home, size: 23, color: Colors.grey),
       activeIcon: Icon(Icons.home, size: 23, color: Colors.blue),
       label: "Home",
@@ -74,7 +74,7 @@ class BarItem {
           height: 45,
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Icon(Icons.add, size: 35, color: Colors.white),
+          child: const Icon(Icons.add, size: 35, color: Colors.white),
         ),
       ),
       activeIcon: ClipOval(
@@ -83,12 +83,12 @@ class BarItem {
           height: 45,
           color: Colors.blue,
           alignment: Alignment.center,
-          child: Icon(Icons.add, size: 35, color: Colors.white),
+          child: const Icon(Icons.add, size: 35, color: Colors.white),
         ),
       ),
       label: "Add",
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.person, size: 23, color: Colors.grey),
       activeIcon: Icon(Icons.person, size: 23, color: Colors.blue),
       label: "Me",

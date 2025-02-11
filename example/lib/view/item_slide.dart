@@ -8,7 +8,8 @@ class ItemSlideWidget extends StatelessWidget {
   final int divisions;
   final Function(double value) onChanged;
 
-  ItemSlideWidget({
+  const ItemSlideWidget({
+    super.key,
     required this.title,
     required this.value,
     required this.min,
@@ -21,8 +22,8 @@ class ItemSlideWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      padding: EdgeInsets.only(left: 10, right: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(width: 1)),
       ),
       child: Row(

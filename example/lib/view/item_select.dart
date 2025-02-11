@@ -6,7 +6,8 @@ class ItemSelectWidget extends StatelessWidget {
   final List<Curve> curveList;
   final Function(Curve? value) onSelect;
 
-  ItemSelectWidget({
+  const ItemSelectWidget({
+    super.key,
     required this.title,
     required this.initCurve,
     required this.curveList,
@@ -17,8 +18,8 @@ class ItemSelectWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 45,
-      padding: EdgeInsets.only(left: 10, right: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(width: 1)),
       ),
       child: Row(
@@ -37,7 +38,7 @@ class ItemSelectWidget extends StatelessWidget {
               onSelected: (Curve? value) {
                 onSelect(value);
               },
-              expandedInsets: EdgeInsets.only(left: 20, right: 20),
+              expandedInsets: const EdgeInsets.only(left: 20, right: 20),
               dropdownMenuEntries:
                   curveList.map<DropdownMenuEntry<Curve>>((Curve c) {
                 return DropdownMenuEntry<Curve>(
