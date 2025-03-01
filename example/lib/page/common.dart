@@ -26,13 +26,7 @@ class _CommonPageState extends State<CommonPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        elevation: 10,
         items: BarItem.commonItems,
-        selectedLabelStyle: const TextStyle(fontSize: 12),
-        unselectedLabelStyle: const TextStyle(fontSize: 12),
         onTap: (index) {
           _currentIndex = index;
           setState(() {});

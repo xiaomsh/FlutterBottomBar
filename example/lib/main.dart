@@ -21,6 +21,22 @@ class MyApp extends StatelessWidget {
         "/use": (context) => const UsePage(),
       },
       home: const HomePage(),
+      theme: ThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          elevation: 10,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          selectedLabelStyle: TextStyle(
+            color: Colors.blue,
+            fontSize: 11,
+          ),
+          unselectedLabelStyle: TextStyle(
+            color: Colors.grey,
+            fontSize: 11,
+          ),
+        ),
+      ),
     );
   }
 }

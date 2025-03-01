@@ -40,7 +40,7 @@ class WaveBarController {
 
   /// call this to change the current index
   void animateToIndex(int index) {
-    _state!.animToIndex(index);
+    _state!._animToIndex(index);
   }
 }
 
@@ -110,10 +110,10 @@ class WaveBottomBar extends StatefulWidget {
   final Curve curve;
 
   /// active item text style
-  final TextStyle selectedLabelStyle;
+  final TextStyle? selectedLabelStyle;
 
   /// normal item text style
-  final TextStyle unselectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
 
   /// whether the labels are shown for the selected [BottomNavigationBarItem].
   final bool showSelectedLabel;
@@ -148,14 +148,8 @@ class WaveBottomBar extends StatefulWidget {
     this.corner = BorderRadius.zero,
     this.duration = const Duration(milliseconds: 50),
     this.curve = Curves.linear,
-    this.selectedLabelStyle = const TextStyle(
-      fontSize: 12,
-      color: Colors.blue,
-    ),
-    this.unselectedLabelStyle = const TextStyle(
-      fontSize: 12,
-      color: Colors.grey,
-    ),
+    this.selectedLabelStyle,
+    this.unselectedLabelStyle,
     this.showSelectedLabel = true,
     this.showUnselectedLabel = true,
     this.removeBottom = false,
@@ -187,7 +181,7 @@ class _WaveBottomBarState extends State<WaveBottomBar>
         setState(() {});
       });
 
-    animToIndex(widget.initialIndex);
+    _animToIndex(widget.initialIndex);
   }
 
   @override
@@ -205,8 +199,21 @@ class _WaveBottomBarState extends State<WaveBottomBar>
     super.dispose();
   }
 
+  /// define icon theme data
+  static IconThemeData _effectiveIconTheme(
+    IconThemeData? iconTheme,
+    Color? itemColor,
+  ) {
+    return iconTheme ?? IconThemeData(color: itemColor);
+  }
+
   /// the normal widget list of bottom items, contains icon and text
-  Widget createNormalItem() {
+  Widget _createNormalItem() {
+    final IconThemeData unselectedIconTheme = _effectiveIconTheme(
+      Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme,
+      Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+    );
+
     final childItem = <Widget>[];
     for (var i = 0; i < widget.items.length; i++) {
       if (_currentIndex == i ||
@@ -219,7 +226,7 @@ class _WaveBottomBarState extends State<WaveBottomBar>
         child: GestureDetector(
           onTap: () {
             widget.onTap(i);
-            animToIndex(i);
+            _animToIndex(i);
           },
           child: Container(
             height: widget.height,
@@ -228,12 +235,18 @@ class _WaveBottomBarState extends State<WaveBottomBar>
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.items[i].icon,
+                IconTheme(
+                  data: unselectedIconTheme,
+                  child: widget.items[i].icon,
+                ),
                 if (widget.showUnselectedLabel) ...[
                   SizedBox(height: widget.unselectedLabelMargin),
                   Text(
                     "${widget.items[i].label}",
-                    style: widget.unselectedLabelStyle,
+                    style: widget.unselectedLabelStyle ??
+                        Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedLabelStyle,
                   ),
                 ],
               ],
@@ -246,31 +259,36 @@ class _WaveBottomBarState extends State<WaveBottomBar>
   }
 
   /// the active and fixed item
-  List<Widget> createFixedItem(double perWidth) {
+  List<Widget> _createFixedItem(double perWidth) {
     final childItem = <Widget>[];
 
     if (widget.type == WaveBottomBarType.fixed) {
       if (_currentIndex == widget.items.length ~/ 2) {
-        childItem.add(buildItem(perWidth, _currentIndex));
+        childItem.add(_buildItem(perWidth, _currentIndex));
       } else {
-        childItem.add(buildItem(perWidth, _currentIndex, hasFixed: false));
+        childItem.add(_buildItem(perWidth, _currentIndex, hasFixed: false));
         childItem.add(
-            buildItem(perWidth, widget.items.length ~/ 2, isSelect: false));
+            _buildItem(perWidth, widget.items.length ~/ 2, isSelect: false));
       }
     } else {
-      childItem.add(buildItem(perWidth, _currentIndex));
+      childItem.add(_buildItem(perWidth, _currentIndex));
     }
 
     return childItem;
   }
 
   /// create the base item
-  Widget buildItem(
+  Widget _buildItem(
     double perWidth,
     int index, {
     bool hasFixed = true,
     bool isSelect = true,
   }) {
+    final IconThemeData selectedIconTheme = _effectiveIconTheme(
+      Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
+      Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+    );
+
     bool hideLabel = false;
     if (!widget.showSelectedLabel) {
       hideLabel = true;
@@ -286,7 +304,7 @@ class _WaveBottomBarState extends State<WaveBottomBar>
       child: GestureDetector(
         onTap: () {
           widget.onTap(index);
-          animToIndex(index);
+          _animToIndex(index);
         },
         child: SizedBox(
           width: perWidth,
@@ -296,7 +314,10 @@ class _WaveBottomBarState extends State<WaveBottomBar>
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    widget.items[index].activeIcon,
+                    IconTheme(
+                      data: selectedIconTheme,
+                      child: widget.items[index].activeIcon,
+                    ),
                     if (!hideLabel) ...[
                       SizedBox(
                         height: hasFixed
@@ -306,8 +327,14 @@ class _WaveBottomBarState extends State<WaveBottomBar>
                       Text(
                         "${widget.items[index].label}",
                         style: isSelect
-                            ? widget.selectedLabelStyle
-                            : widget.unselectedLabelStyle,
+                            ? widget.selectedLabelStyle ??
+                                Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .selectedLabelStyle
+                            : widget.unselectedLabelStyle ??
+                                Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedLabelStyle,
                       ),
                     ],
                   ],
@@ -318,7 +345,7 @@ class _WaveBottomBarState extends State<WaveBottomBar>
   }
 
   /// start anim to active item, pass the percentage to the wave
-  void animToIndex(int index) {
+  void _animToIndex(int index) {
     _currentIndex = index;
     setState(() {});
     if (widget.type == WaveBottomBarType.fixed) {
@@ -351,9 +378,13 @@ class _WaveBottomBarState extends State<WaveBottomBar>
             painter: WavePainter(
               amplitude: widget.amplitude,
               waveLength: widget.waveLength,
-              backgroundColor: widget.backgroundColor ?? Colors.white,
-              elevation: widget.elevation ?? 0,
-              shadowColor: widget.shadowColor ?? Colors.grey.shade300,
+              backgroundColor: widget.backgroundColor ??
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
+                  Colors.white,
+              elevation: widget.elevation ??
+                  Theme.of(context).bottomNavigationBarTheme.elevation ??
+                  0,
+              shadowColor: widget.shadowColor ?? Theme.of(context).shadowColor,
               direction: widget.direction,
               corner: widget.corner,
               barCount: widget.items.length,
@@ -361,8 +392,8 @@ class _WaveBottomBarState extends State<WaveBottomBar>
             ),
           ),
         ),
-        createNormalItem(),
-        ...createFixedItem(perWidth),
+        _createNormalItem(),
+        ..._createFixedItem(perWidth),
       ],
     );
   }

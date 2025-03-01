@@ -1,3 +1,7 @@
+## 1.7.0
+
+- add icon theme
+
 ## 1.6.1
 
 - fix
